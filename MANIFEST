@@ -1,0 +1,11 @@
+INSTALL
+LICENSE
+MANIFEST
+META.json
+META.yml
+Makefile.PL
+README
+README.txt
+dist.ini
+lib/Test/Mock/Apache2.pm
+t/sanity-check.t
