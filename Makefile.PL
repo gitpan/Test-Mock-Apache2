@@ -4,7 +4,7 @@ use warnings;
 
 
 
-use ExtUtils::MakeMaker 6.30;
+use ExtUtils::MakeMaker 6.31;
 
 
 
@@ -15,7 +15,7 @@ my %WriteMakefileArgs = (
     'Test::More' => '0'
   },
   'CONFIGURE_REQUIRES' => {
-    'ExtUtils::MakeMaker' => '6.30'
+    'ExtUtils::MakeMaker' => '6.31'
   },
   'DISTNAME' => 'Test-Mock-Apache2',
   'EXE_FILES' => [],
@@ -24,7 +24,7 @@ my %WriteMakefileArgs = (
   'PREREQ_PM' => {
     'Test::MockObject' => '0'
   },
-  'VERSION' => '0.03',
+  'VERSION' => '0.04',
   'test' => {
     'TESTS' => 't/*.t'
   }

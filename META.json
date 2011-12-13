@@ -4,7 +4,7 @@
       "Cosimo Streppone <cosimo@opera.com>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.200012, CPAN::Meta::Converter version 2.112620",
+   "generated_by" : "Dist::Zilla version 4.200000, CPAN::Meta::Converter version 2.102400",
    "license" : [
       "bsd"
    ],
@@ -16,7 +16,7 @@
    "prereqs" : {
       "configure" : {
          "requires" : {
-            "ExtUtils::MakeMaker" : "6.30"
+            "ExtUtils::MakeMaker" : "6.31"
          }
       },
       "runtime" : {
@@ -42,6 +42,6 @@
          "web" : "http://github.com/cosimo/perl5-test-mock-apache2"
       }
    },
-   "version" : "0.03"
+   "version" : "0.04"
 }
 
