@@ -4,29 +4,29 @@ use warnings;
 
 
 
-use ExtUtils::MakeMaker 6.31;
+use ExtUtils::MakeMaker 6.30;
 
 
 
 my %WriteMakefileArgs = (
-  'ABSTRACT' => 'Mock mod_perl2 objects when running outside of Apache',
-  'AUTHOR' => 'Cosimo Streppone <cosimo@opera.com>',
-  'BUILD_REQUIRES' => {
-    'Test::More' => '0'
+  "ABSTRACT" => "Mock mod_perl2 objects when running outside of Apache",
+  "AUTHOR" => "Cosimo Streppone <cosimo\@opera.com>",
+  "BUILD_REQUIRES" => {
+    "Test::More" => 0
   },
-  'CONFIGURE_REQUIRES' => {
-    'ExtUtils::MakeMaker' => '6.31'
+  "CONFIGURE_REQUIRES" => {
+    "ExtUtils::MakeMaker" => "6.30"
   },
-  'DISTNAME' => 'Test-Mock-Apache2',
-  'EXE_FILES' => [],
-  'LICENSE' => 'bsd',
-  'NAME' => 'Test::Mock::Apache2',
-  'PREREQ_PM' => {
-    'Test::MockObject' => '0'
+  "DISTNAME" => "Test-Mock-Apache2",
+  "EXE_FILES" => [],
+  "LICENSE" => "bsd",
+  "NAME" => "Test::Mock::Apache2",
+  "PREREQ_PM" => {
+    "Test::MockObject" => 0
   },
-  'VERSION' => '0.04',
-  'test' => {
-    'TESTS' => 't/*.t'
+  "VERSION" => "0.05",
+  "test" => {
+    "TESTS" => "t/*.t"
   }
 );
 

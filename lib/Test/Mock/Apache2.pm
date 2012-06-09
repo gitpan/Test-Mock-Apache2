@@ -3,7 +3,7 @@ package Test::Mock::Apache2;
 use strict;
 use warnings;
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 use Test::MockObject;
 
@@ -18,6 +18,7 @@ our $APR_THROW_EXCEPTION = 0xDEADBEEF;
 {
 
     my $COOKIE_JAR = {};
+    my $PARAMS = {};
 
     sub cookie_jar {
         my $self = shift;
@@ -28,6 +29,16 @@ our $APR_THROW_EXCEPTION = 0xDEADBEEF;
 
         return $COOKIE_JAR;
     }
+
+sub params {
+    my $self = shift;
+
+    if (@_) {
+	$PARAMS = shift;
+    }
+    
+    return $PARAMS;
+}
 
 }
 
@@ -54,6 +65,7 @@ sub ap2_server {
     my $r = Test::MockObject->new();
     $r->fake_module('Apache2::ServerRec',
         server_hostname => sub { $config->{server_hostname} || 'localhost' },
+        log_error => sub { print $_[0] . "\n"; },
     );
     bless $r, 'Apache2::ServerRec';
     return $r;
@@ -67,6 +79,8 @@ sub ap2_request {
         hostname   => sub {},
         server     => sub { ap2_server($config) },
         dir_config => sub { $config->{ $_[1] } },
+        content_type => sub { },
+        uri        => sub { ""; },
     );
     bless $r, 'Apache2::RequestRec';
     return $r;
@@ -88,6 +102,10 @@ sub apr_request_ap2 {
             }
             bless $jar, "APR::Request::Cookie::Table";
         },
+        param => sub {
+	    my $params = Test::Mock::Apache2->params();
+	    bless $params, "APR::Request::Param::Table";
+	},
         handle => \&apr_request_ap2,
     );
     $r->fake_new('APR::Request::Apache2');
@@ -130,7 +148,7 @@ Test::Mock::Apache2 - Mock mod_perl2 objects when running outside of Apache
 
 =head1 VERSION
 
-version 0.04
+version 0.05
 
 =head1 SYNOPSIS
 
@@ -180,7 +198,7 @@ methods: C<hostname>, C<dir_config>, C<server>.
 =head2 ap2_request_ap2
 
 Return a mock L<APR::Request::Apache2> B<empty> object with the
-following methods: C<new>, C<jar>, C<handle>.
+following methods: C<new>, C<jar>, C<param>, C<handle>.
 
 =head2 ap2_requestutil
 
@@ -204,7 +222,7 @@ Cosimo Streppone <cosimo@opera.com>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2011 by Opera Software ASA.
+This software is Copyright (c) 2012 by Opera Software ASA.
 
 This is free software, licensed under:
 
